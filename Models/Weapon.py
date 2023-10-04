@@ -9,7 +9,7 @@ class Weapon:
         _totalDamage = 0
 
         while _i < self.damageDice + 1:
-            _diceValue = random.randint(1, 7)
+            _diceValue = random.randint(1, 6)
             if _diceValue == 6:
                 _i -= 1
             _totalDamage += _diceValue
