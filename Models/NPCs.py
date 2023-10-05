@@ -1,4 +1,3 @@
-
 class UnarmedNPC:
     def __init__(self, id, name, hitPoints, guard,
                  attackSkill, defenceSkill,

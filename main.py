@@ -1,11 +1,6 @@
-from AppMenus import Startup
+from AppMenus import StartMenu
 from Models.NPCs import *
-import os
-
-
-def clear_screen():
-    os.system('cls')
-
+import ClearScreen
 
 Bengt = UnarmedNPC(3, "Bengt", 20, 23,
                    70, 60,
@@ -22,6 +17,6 @@ print(Bengt.name)
 print(Bengt.description)
 
 # Call the function to clear the screen
-clear_screen()
+ClearScreen.wipe()
 
-Startup.goToSplashScreen()
+StartMenu.goToStartMenu()
