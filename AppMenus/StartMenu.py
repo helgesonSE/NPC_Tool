@@ -1,6 +1,7 @@
 import time
 import ClearScreen
-from AppMenus import *
+import IsValidInput
+from AppMenus.ManageNPCs import goToManageNPCs
 from Models.NPCs import *
 from View.CurrentSession import CurrentSession
 
@@ -23,35 +24,32 @@ def goToStartMenu():
             print(npc.weapon["name"] + "\n" + npc.weapon["damage"])
 
     input()
-    ClearScreen.wipe()
 
     while True:
+        ClearScreen.wipe()
         print(
             "\nMAIN MENU\n"
             "+-------+\n\n"
-            "1. Manage NPC:s\n"
-            "2. Go to NPC action interface\n"
+            "[1] Manage NPC:s\n"
+            "[2] Go to NPC action interface\n"
             "-----------------\n"
-            "3. Exit")
+            "[3] Exit")
 
         userInput = input()
-        if userInput.isdecimal():
+        if IsValidInput.forMenu(userInput, str.isdecimal, 3):
             menuSelect = int(userInput)
+            if menuSelect == 1:
 
-            if menuSelect > 0 or menuSelect < 4:
+                goToManageNPCs()
+                #goToManageNPCs()
 
-                if menuSelect == 1:
+            if menuSelect == 2:
 
-                    print()
-                    #goToManageNPCs()
+                print()
+                #goToSelectNPCsForAction
 
-                if menuSelect == 2:
-
-                    print()
-                    #goToSelectNPCsForAction
-
-                if menuSelect == 3:
-                    break
+            if menuSelect == 3:
+                break
 
         else:
             print("\nYou entered an invalid command,\n"
