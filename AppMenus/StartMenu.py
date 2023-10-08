@@ -23,6 +23,8 @@ def goToStartMenu():
         if isinstance(npc, ArmedNPC):
             print(npc.weapon["name"] + "\n" + npc.weapon["damage"])
 
+    print("static ID: " + BaseNPC.staticID)
+
     input()
 
     while True:
@@ -39,18 +41,12 @@ def goToStartMenu():
         if IsValidInput.forMenu(userInput, str.isdecimal, 3):
             menuSelect = int(userInput)
             if menuSelect == 1:
-
                 goToManageNPCs()
-                #goToManageNPCs()
-
             if menuSelect == 2:
-
                 print()
                 #goToSelectNPCsForAction
-
             if menuSelect == 3:
                 break
-
         else:
             print("\nYou entered an invalid command,\n"
                   "please choose between 1, 2, or 3.")

@@ -8,38 +8,42 @@ class CurrentSession:
 
 
     def loadNPCsToLists(self):
-        jsonRead = open('Files/NPC_list.json', 'r')
+        jsonRead = open('Files/NPC_data.json', 'r')
         jsonNPCs = json.load(jsonRead)
         jsonRead.close()
         print(jsonNPCs)
 
         _NPCList = []
 
+        BaseNPC.staticID = jsonNPCs["staticId"]
+
         for category, npc_list in jsonNPCs.items():
             for npc in npc_list:
                 if category == "UnarmedNPC":
-                    npcInstance = UnarmedNPC(
+                    npcInstance = BaseNPC(
                         npc['id'],
                         npc['name'],
                         npc['hitPoints'],
-                        npc['guard'],
+                        npc['guardPoints'],
                         npc['attackSkill'],
                         npc['defenceSkill'],
                         npc['armour'],
                         npc['description']
                         )
-                else:
+                elif category == "ArmedNPC":
                     npcInstance = ArmedNPC(
                         npc['id'],
                         npc['name'],
                         npc['hitPoints'],
-                        npc['guard'],
+                        npc['guardPoints'],
                         npc['attackSkill'],
                         npc['defenceSkill'],
                         npc['armour'],
                         npc['description'],
                         npc['weapon']
                     )
+                else:
+                    continue
                 _NPCList.append(npcInstance)
 
         return _NPCList

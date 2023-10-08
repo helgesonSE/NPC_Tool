@@ -4,7 +4,7 @@ def forMenu(value, isTypeOf, count):
             return True
     return False
 
-def forInt(value, isTypeOf):
-    if isTypeOf(value):
-        return True
-    return False
+def forInt(value):
+    if value.isdecimal():
+        return True, value
+    return False, 0
