@@ -1,6 +1,7 @@
 from AppMenus import StartMenu
 from Models.NPCs import *
 import ClearScreen
+from View.CurrentSession import CurrentSession
 
 Bengt = BaseNPC(3, "Bengt", 20, 23,
                 70, 60,
@@ -18,5 +19,15 @@ print(Bengt.description)
 
 # Call the function to clear the screen
 ClearScreen.wipe()
+
+# load json from file
+session = CurrentSession()
+# Testing to see that the NPC:s are loaded properly
+for npc in session.NPCList:
+    print(npc.name)
+    if isinstance(npc, ArmedNPC):
+        print(npc.weapon["name"] + "\n" + npc.weapon["damage"])
+
+print("static ID: " + BaseNPC.staticID)
 
 StartMenu.goToStartMenu()

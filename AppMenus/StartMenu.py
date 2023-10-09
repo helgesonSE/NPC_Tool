@@ -2,10 +2,8 @@ import time
 import ClearScreen
 import IsValidInput
 from AppMenus.ManageNPCs import goToManageNPCs
-from Models.NPCs import *
-from View.CurrentSession import CurrentSession
-
 def goToStartMenu():
+
     print("\n"
           "\t+-------------+\n"
           "\t|     ~~~     |\n"
@@ -15,15 +13,6 @@ def goToStartMenu():
 
     print("Press enter to continue...")
 
-    # load json from file
-    session = CurrentSession()
-    # Testing to see that the NPC:s are loaded properly
-    for npc in session.NPCList:
-        print(npc.name)
-        if isinstance(npc, ArmedNPC):
-            print(npc.weapon["name"] + "\n" + npc.weapon["damage"])
-
-    print("static ID: " + BaseNPC.staticID)
 
     input()
 

@@ -1,11 +1,11 @@
 import ClearScreen
 import time
-
 import IsValidInput
 from Models.NPCs import *
 
 
 def addNPC():
+    import main
     typeOfNPC = 0
     name = ""
     hitPoints = 0
@@ -92,6 +92,10 @@ def addNPC():
             armour,
             description
         )
+    main.session.NPCList.append(npcInstance)
+    for npc in main.session.NPCList:
+        print(npc.name)
+
 def goToManageNPCs():
 
     while True:
