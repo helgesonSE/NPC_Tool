@@ -1,0 +1,42 @@
+{
+   "staticId":"11",
+   "UnarmedNPC":[
+      {
+         "id":"1",
+         "name":"Serpent",
+         "hitPoints":"40",
+         "guardPoints":"30",
+         "attackSkill":"65",
+         "defenceSkill":"40",
+         "armour":"4",
+         "description":"Long and scaly with fearsome teeth."
+      },
+      {
+         "id":"4",
+         "name":"Bear",
+         "hitPoints":"50",
+         "guardPoints":"30",
+         "attackSkill":"70",
+         "defenceSkill":"45",
+         "armour":"2",
+         "description":"It’s pretty cute. Too bad it’s gonna eat you."
+      }
+   ],
+   "ArmedNPC":[
+      {
+         "id":"10",
+         "name":"Wolfkin Scout",
+         "hitPoints":"28",
+         "guardPoints":"25",
+         "attackSkill":"75",
+         "defenceSkill":"75",
+         "armour":"2",
+         "description":"Here comes the Game Dog, AROOOOO!",
+         "weapon":
+         {
+            "name":"Scimitar",
+            "damage":"5"
+         }
+      }
+   ]
+}
