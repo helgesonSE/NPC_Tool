@@ -1,11 +1,12 @@
 import ClearScreen
 import time
 import IsValidInput
+import Models.NPCs
 from Models.NPCs import *
+from Data import session
 
 
 def addNPC():
-    import main
     typeOfNPC = 0
     name = ""
     hitPoints = 0
@@ -16,7 +17,9 @@ def addNPC():
     description = ""
     inputWeapon = {"name": "", "damage": ""}
 
-    print("Add NPC\n"
+    ClearScreen.wipe()
+
+    print("\nAdd NPC\n"
           "+-----+\n\n")
 
     while True:
@@ -92,12 +95,64 @@ def addNPC():
             armour,
             description
         )
-    main.session.NPCList.append(npcInstance)
-    for npc in main.session.NPCList:
-        print(npc.name)
+    Models.NPCs.BaseNPC.staticID += 1
+    session.NPCList.append(npcInstance)
+
+    # message to user, return to NPC management menu
+    for npc in session.NPCList:
+        print(str(npc.id).rjust(3, ' ') + " " + npc.name)
+
+
+def editNPCs():
+    #session.NPCList.sort(key=int(id))
+    foundNPC = False
+
+    while True:
+        ClearScreen.wipe()
+        print("Edit NPC\n"
+              "+-----+\n\n")
+        for npc in session.NPCList:
+            print(str(npc.id).rjust(3, ' ') + " " + npc.name)
+
+        print("\nEnter ID of the NPC you want to edit:\n")
+        userInput = input()
+        if not userInput.isdecimal():
+            continue
+        i = 0
+        while (i < len(session.NPCList)):
+            if session.NPCList[i].id == userInput:
+                foundNPC = True
+                break
+            i += 1
+        if not foundNPC:
+            print("\nNo such ID exists.\n")
+            time.sleep(3)
+            break
+        else:
+            ClearScreen.wipe()
+            print("Edit NPC\n"
+                  "+-----+\n\n")
+
+        session.NPCList[i].PrintValues(True)
+
+        while True:
+            print(f"\nSelect attribute to edit, enter [0] to go back: \n")
+            userInput = input()
+            if IsValidInput.forMenu(userInput, str.isdecimal, len(session.NPCList[i].NPCKeys)):
+                menuSelect = int(userInput)
+                if menuSelect == 0:
+                    break
+                else:
+                    session.NPCList[i].NPCValues[menuSelect]
+            else:
+                print("\nYou entered an invalid command,\n"
+                      f"please choose between 0 and {len(session.NPCList[i].NPCKeys)}.")
+                time.sleep(3)
+                continue
+
+
 
 def goToManageNPCs():
-
     while True:
         ClearScreen.wipe()
         print("\n"
@@ -109,20 +164,19 @@ def goToManageNPCs():
               "[3] Return to main menu\n")
 
         userInput = input()
-        if IsValidInput.forMenu(userInput, str.isdecimal, 3):
+        if IsValidInput.forMenu(userInput, str.isdecimal, 2):
             menuSelect = int(userInput)
 
             if menuSelect == 1:
                 addNPC()
                 # goToManageNPCs()
             if menuSelect == 2:
-                print()
-                # goToSelectNPCsForAction
-            if menuSelect == 3:
+                editNPCs()
+                # editNPCs()
+            if menuSelect == 0:
                 break
         else:
             print("\nYou entered an invalid command,\n"
-                  "please choose between 1 and 2.")
+                  "please choose between 0, 1 and 2.")
             time.sleep(3)
             continue
-

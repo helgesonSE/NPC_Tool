@@ -1,7 +1,7 @@
 import time
+import AppMenus.ManageNPCs
 import ClearScreen
 import IsValidInput
-from AppMenus.ManageNPCs import goToManageNPCs
 def goToStartMenu():
 
     print("\n"
@@ -12,8 +12,6 @@ def goToStartMenu():
           "\t+-------------+")
 
     print("Press enter to continue...")
-
-
     input()
 
     while True:
@@ -24,20 +22,19 @@ def goToStartMenu():
             "[1] Manage NPC:s\n"
             "[2] Go to NPC action interface\n"
             "-----------------\n"
-            "[3] Exit")
+            "[0] Exit")
 
         userInput = input()
-        if IsValidInput.forMenu(userInput, str.isdecimal, 3):
+        if IsValidInput.forMenu(userInput, str.isdecimal, 2):
             menuSelect = int(userInput)
             if menuSelect == 1:
-                goToManageNPCs()
+                AppMenus.ManageNPCs.goToManageNPCs()
             if menuSelect == 2:
                 print()
-                #goToSelectNPCsForAction
-            if menuSelect == 3:
+            if menuSelect == 0:
                 break
         else:
             print("\nYou entered an invalid command,\n"
-                  "please choose between 1, 2, or 3.")
+                  "please choose between 0, 1, or 2.")
             time.sleep(3)
             continue

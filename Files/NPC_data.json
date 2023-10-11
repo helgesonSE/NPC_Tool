@@ -1,8 +1,8 @@
 {
-   "staticId":"11",
-   "UnarmedNPC":[
+   "staticId":"0011",
+   "BaseNPC":[
       {
-         "id":"1",
+         "id":"0001",
          "name":"Serpent",
          "hitPoints":"40",
          "guardPoints":"30",
@@ -12,7 +12,7 @@
          "description":"Long and scaly with fearsome teeth."
       },
       {
-         "id":"4",
+         "id":"0004",
          "name":"Bear",
          "hitPoints":"50",
          "guardPoints":"30",
@@ -24,7 +24,7 @@
    ],
    "ArmedNPC":[
       {
-         "id":"10",
+         "id":"0010",
          "name":"Wolfkin Scout",
          "hitPoints":"28",
          "guardPoints":"25",
