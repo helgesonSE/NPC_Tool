@@ -1,24 +1,14 @@
 import ClearScreen
 import time
 import IsValidInput
-import Models.NPCs
 from Models.NPCs import *
-from Data import session
+from Data import session, Keys
 
 
 def addNPC():
-    typeOfNPC = 0
-    name = ""
-    hitPoints = 0
-    guardPoints = 0
-    attackSkill = 0
-    defenceSkill = 0
-    armour = 0
-    description = ""
-    inputWeapon = {"name": "", "damage": ""}
+    newID = NPC.GetNewID()
 
     ClearScreen.wipe()
-
     print("\nAdd NPC\n"
           "+-----+\n\n")
 
@@ -29,82 +19,30 @@ def addNPC():
         if IsValidInput.forMenu(userInput, str.isdecimal, 2):
             typeOfNPC = int(userInput)
             break
-    print("Enter NPC name: ")
-    name = input()
-    print("Enter description: ")
-    description = input()
-    while True:
-        print("Enter hit points (no-decimal number): ")
-        userInput = input()
-        if userInput.isdecimal():
-            hitPoints = userInput
-            break
-    while True:
-        print("Enter guard points (no-decimal number): ")
-        userInput = input()
-        if userInput.isdecimal():
-            guardPoints = userInput
-            break
-    while True:
-        print("Enter attack skill (no-decimal number): ")
-        userInput = input()
-        if userInput.isdecimal():
-            attackSkill = userInput
-            break
-    while True:
-        print("Enter defence skill (no-decimal number): ")
-        userInput = input()
-        if userInput.isdecimal():
-            defenceSkill = userInput
-            break
-    while True:
-        print("Enter armour rating (no-decimal number): ")
-        userInput = input()
-        if userInput.isdecimal():
-            armour = userInput
-            break
+
+    name = enterValueForNPC(Keys.Name)
+    description = enterValueForNPC(Keys.Description)
+    hitPoints = enterValueForNPC(Keys.HitPoints)
+    guardPoints = enterValueForNPC(Keys.GuardPoints)
+    attackSkill = enterValueForNPC(Keys.AttackSkill)
+    defenceSkill = enterValueForNPC(Keys.DefenceSkill)
+    armour = enterValueForNPC(Keys.Armour)
     if typeOfNPC == 2:
-        print("Enter the name of a weapon: ")
-        weaponName = input()
-        while True:
-            print("Enter the damage rating of the " + weaponName + " (no-decimal number): ")
-            userInput = input()
-            if userInput.isdecimal():
-                weaponDamage = userInput
-                inputWeapon = {"name": weaponName, "damage": weaponDamage}
-                break
-        npcInstance = ArmedNPC(
-            BaseNPC.staticID,
-            name,
-            hitPoints,
-            guardPoints,
-            attackSkill,
-            defenceSkill,
-            armour,
-            description,
-            inputWeapon
-        )
+        inputWeapon = enterValueForNPC(Keys.Weapon)
+
+        npcInstance = ArmedNPC(newID, name, hitPoints, guardPoints, attackSkill,
+                               defenceSkill, armour, description, inputWeapon)
     else:
-        npcInstance = BaseNPC(
-            BaseNPC.staticID,
-            name,
-            hitPoints,
-            guardPoints,
-            attackSkill,
-            defenceSkill,
-            armour,
-            description
-        )
-    Models.NPCs.BaseNPC.staticID += 1
+        npcInstance = BaseNPC(newID, name, hitPoints, guardPoints, attackSkill,
+                              defenceSkill, armour, description)
+
     session.NPCList.append(npcInstance)
 
-    # message to user, return to NPC management menu
-    for npc in session.NPCList:
-        print(str(npc.id).rjust(3, ' ') + " " + npc.name)
-
+    print(f"NPC {npcInstance.name} with ID {npcInstance.id} added.")
+    time.sleep(3)
 
 def editNPCs():
-    #session.NPCList.sort(key=int(id))
+    session.NPCList.sort(key=lambda x: x.id)
     foundNPC = False
 
     while True:
@@ -119,7 +57,7 @@ def editNPCs():
         if not userInput.isdecimal():
             continue
         i = 0
-        while (i < len(session.NPCList)):
+        while i < len(session.NPCList):
             if session.NPCList[i].id == userInput:
                 foundNPC = True
                 break
@@ -128,29 +66,75 @@ def editNPCs():
             print("\nNo such ID exists.\n")
             time.sleep(3)
             break
+
         else:
             ClearScreen.wipe()
             print("Edit NPC\n"
                   "+-----+\n\n")
-
-        session.NPCList[i].PrintValues(True)
-
         while True:
-            print(f"\nSelect attribute to edit, enter [0] to go back: \n")
+            session.NPCList[i].PrintValues(True)
+
+            print("\nSelect attribute to edit.\n"
+                  "-------\n"
+                  "[9] Delete NPC\n"
+                  "[0] exit dialogue: \n")
             userInput = input()
-            if IsValidInput.forMenu(userInput, str.isdecimal, len(session.NPCList[i].NPCKeys)):
-                menuSelect = int(userInput)
-                if menuSelect == 0:
+            if userInput == "9" or IsValidInput.forMenu(userInput, str.isdecimal, len(session.NPCList[i].NPCKeys)):
+                keySelect = int(userInput)
+
+                if keySelect == 9:
+                    print("\nNPC " + session.NPCList[i].name + " deleted.\n")
+                    del session.NPCList[i]
+                    time.sleep(3)
+                    break
+                elif keySelect == 0:
                     break
                 else:
-                    session.NPCList[i].NPCValues[menuSelect]
+                    #keySelect -= 1
+                    if keySelect == 8:
+                        replacementWeapon = enterValueForNPC(Keys(keySelect))
+                        session.NPCList[i].NPCValues[keySelect]["name"] = replacementWeapon["name"]
+                        session.NPCList[i].NPCValues[keySelect]["damage"] = replacementWeapon["damage"]
+                    else:
+                        session.NPCList[i].NPCValues[keySelect] = enterValueForNPC(Keys(keySelect))
+                        # while True:
+                        #     print("Enter a new value for " + session.NPCList[i].NPCKeys[keySelect])
+                        #     userInput = input()
+                        #     if keySelect != (0 or 1):
+                        #         session.NPCList[i].NPCValues[keySelect] = userInput
+                        #         break
+                        #     else:
+                        #         if userInput.isdecimal():
+                        #             session.NPCList[i].NPCValues[keySelect] = userInput
+                        #             break
             else:
                 print("\nYou entered an invalid command,\n"
-                      f"please choose between 0 and {len(session.NPCList[i].NPCKeys)}.")
+                      f"please choose between 0 and {len(session.NPCList[i].NPCKeys)}.\n")
                 time.sleep(3)
                 continue
+        break
 
-
+def enterValueForNPC(key):
+    returnValue = None
+    if key == (Keys.Name or Keys.Description):
+        print(f"Enter NPC {key.name}:")
+        returnValue = input()
+    elif key == Keys.Weapon:
+        print("Enter the name of the NPC:s weapon: ")
+        weaponName = input()
+        while True:
+            print("Enter the damage rating of the " + weaponName + " (no-decimal number): ")
+            userInput = input()
+            if userInput.isdecimal():
+                weaponDamage = userInput
+                break
+        returnValue = {"name": weaponName, "damage": weaponDamage}
+    else:
+        print(f"Enter NPC {Keys(key).name} (no-decimal number): ")
+        userInput = input()
+        if userInput.isdecimal():
+            returnValue = userInput
+    return returnValue
 
 def goToManageNPCs():
     while True:
@@ -161,7 +145,7 @@ def goToManageNPCs():
               "[1] Add NPC\n"
               "[2] Edit NPC\n"
               "-----------\n"
-              "[3] Return to main menu\n")
+              "[0] Return to main menu\n")
 
         userInput = input()
         if IsValidInput.forMenu(userInput, str.isdecimal, 2):

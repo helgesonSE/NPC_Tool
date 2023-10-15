@@ -2,7 +2,7 @@
    "staticId":"0011",
    "BaseNPC":[
       {
-         "id":"0001",
+         "id":"0009",
          "name":"Serpent",
          "hitPoints":"40",
          "guardPoints":"30",

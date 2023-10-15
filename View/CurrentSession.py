@@ -14,7 +14,7 @@ class CurrentSession:
 
         _NPCList = []
 
-        BaseNPC.staticID = int(jsonNPCs["staticId"])
+        NPC.staticID = int(jsonNPCs["staticId"])
 
         for category, npc_list in jsonNPCs.items():
             for npc in npc_list:
