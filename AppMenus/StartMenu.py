@@ -1,7 +1,8 @@
 import time
 import AppMenus.ManageNPCs
+import AppMenus.SelectNPCsForAction
 import ClearScreen
-import IsValidInput
+import ValidInput
 def goToStartMenu():
 
     print("\n"
@@ -25,12 +26,12 @@ def goToStartMenu():
             "[0] Exit")
 
         userInput = input()
-        if IsValidInput.forMenu(userInput, str.isdecimal, 2):
+        if ValidInput.forMenu(userInput, str.isdecimal, 2): #.forMenu makes sure inout was ok and within bounds.
             menuSelect = int(userInput)
             if menuSelect == 1:
                 AppMenus.ManageNPCs.goToManageNPCs()
             if menuSelect == 2:
-                print()
+                AppMenus.SelectNPCsForAction.selectNPCs()
             if menuSelect == 0:
                 break
         else:

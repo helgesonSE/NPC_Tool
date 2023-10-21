@@ -1,10 +1,7 @@
 from enum import Enum
 from View.CurrentSession import CurrentSession
-class MenuOrList(Enum):
-    Menu = 1
-    List = 2
 
-class Keys(Enum):
+class Attribute(Enum):  #Used to print attribute names and also access them based on index.
     Name = 1
     Description = 2
     HitPoints = 3
@@ -15,4 +12,4 @@ class Keys(Enum):
     Weapon = 8
 
 
-session = CurrentSession()
+session = CurrentSession()  #the session objects holds our lists of NPC objects and loads from file.
