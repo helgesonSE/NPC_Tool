@@ -4,7 +4,7 @@ def forMenu(value, isTypeOf, count):    #May rewrite to also return converted va
             return True
     return False
 
-def forInt():   #This one takes inout inside itself, the one above doesn't... Room for improvement!
+def forInt():   #This one takes input inside itself, the one above doesn't... Room for improvement!
     while True:
         userInput = input()
         if userInput.isdecimal():
