@@ -2,7 +2,7 @@ import ClearScreen
 import time
 import ValidInput
 from Models.NPCs import *
-from Data import session, Attribute
+from Data import session
 
 
 def addNPC():
@@ -119,6 +119,7 @@ def enterValueForNPC(key):  #Different dialogue and input checks based on what a
 def goToManageNPCs():
     while True:
         ClearScreen.wipe()
+
         print("\n"
               "NPC management\n"
               "+------------+\n\n"

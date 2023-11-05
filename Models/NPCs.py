@@ -1,7 +1,15 @@
 import random
-import Data
+from enum import Enum
 
-
+class Attribute(Enum):  #Used to print attribute names and also access them based on index.
+    Name = 1
+    Description = 2
+    HitPoints = 3
+    GuardPoints = 4
+    AttackSkill = 5
+    DefenceSkill = 6
+    Armour = 7
+    Weapon = 8
 class NPC:
     staticID = 0
 
@@ -42,10 +50,10 @@ class BaseNPC(NPC): #Inherits from NPC.
             if asMenu:
                 x = f"[{i}] "
             if i == 8 and isinstance(self, ArmedNPC):
-                print(x + str(Data.Attribute(i).name).rjust(16, ' ') + ": " +
+                print(x + str(Attribute(i).name).rjust(16, ' ') + ": " +
                       self.weapon["name"] + "/ " + str(self.weapon["damage"]))
                 break
-            print(x + str(Data.Attribute(i).name).rjust(16, ' ') + ": " + str(self.NPCValues[i]))
+            print(x + str(Attribute(i).name).rjust(16, ' ') + ": " + str(self.NPCValues[i]))
             i += 1
 
     def Attack(self, opposeRoll):   #opposeRoll is the opponents defence skill roll, entered manually.
@@ -56,7 +64,7 @@ class BaseNPC(NPC): #Inherits from NPC.
                 i = 0
                 while i < self.weapon["damage"]:    #The value in "damage" represents the number of dice rolled.
                     diceResult = random.randint(1, 6)
-                    if diceResult == 6: #The dice are exploding. A 6 lets you roll an extra die.
+                    if diceResult == 6: #The dice are exploding, a 6 lets you roll an extra die.
                         i -= 1
                     damageRoll += diceResult
                     i += 1

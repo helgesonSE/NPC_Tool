@@ -47,3 +47,12 @@ class CurrentSession:
                 _NPCList.append(npcInstance)
 
         return _NPCList
+
+    def writeNPCsToFile(self):
+        #Must add conversion into dicts.
+        jsonString = ""
+        for npc in self.NPCList:
+            jsonString = jsonString + json.dumps(npc)
+        print(jsonString)
+
+
