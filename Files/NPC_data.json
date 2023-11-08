@@ -1,41 +1,40 @@
 {
-   "staticId":"0011",
-   "BaseNPC":[
+   "staticId": "0011",
+   "BaseNPC": [
       {
-         "id":"0009",
-         "name":"Serpent",
-         "hitPoints":40,
-         "guardPoints":30,
-         "attackSkill":65,
-         "defenceSkill":40,
-         "armour":4,
-         "description":"Long and scaly with fearsome teeth."
+         "id": "0009",
+         "name": "Serpent",
+         "hitPoints": 40,
+         "guardPoints": 30,
+         "attackSkill": 65,
+         "defenceSkill": 40,
+         "armour": 4,
+         "description": "Long and scaly with fearsome teeth."
       },
       {
-         "id":"0004",
-         "name":"Bear",
-         "hitPoints":50,
-         "guardPoints":30,
-         "attackSkill":70,
-         "defenceSkill":45,
-         "armour":2,
-         "description":"It’s pretty cute. Too bad it’s gonna eat you."
+         "id": "0004",
+         "name": "Bear",
+         "hitPoints": 50,
+         "guardPoints": 30,
+         "attackSkill": 70,
+         "defenceSkill": 45,
+         "armour": 2,
+         "description": "It’s pretty cute. Too bad it’s gonna eat you."
       }
    ],
-   "ArmedNPC":[
+   "ArmedNPC": [
       {
-         "id":"0010",
-         "name":"Wolfkin Scout",
-         "hitPoints":28,
-         "guardPoints":25,
-         "attackSkill":75,
-         "defenceSkill":40,
-         "armour":2,
-         "description":"Here comes the Game Dog, AROOOOO!",
-         "weapon":
-         {
-            "name":"Scimitar",
-            "damage":5
+         "id": "0010",
+         "name": "Wolfkin Scout",
+         "hitPoints": 28,
+         "guardPoints": 25,
+         "attackSkill": 75,
+         "defenceSkill": 40,
+         "armour": 2,
+         "description": "Here comes the Game Dog, AROOOOO!",
+         "weapon": {
+            "name": "Scimitar",
+            "damage": 5
          }
       }
    ]

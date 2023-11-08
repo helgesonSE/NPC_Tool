@@ -8,7 +8,7 @@ def goToActionInterface():
     while True:
         index = 0
         while index < len(session.actionInterfaceNPCs):
-            print(f"\n[{index + 1}]\n")  #Prints our picked NPCs along with a number which is used to select one after this.
+            print(f"\n[{index + 1}]\n")  # Prints our picked NPCs along with a number which is used to select one after this.
             session.actionInterfaceNPCs[index].PrintValues(False)
             index += 1
 
@@ -30,16 +30,16 @@ def goToActionInterface():
                           "------------\n"
                           "[0] Go back\n")
 
-                    selectAction = input()
-                    if ValidInput.forMenu(selectAction, str.isdecimal, 2):
-                        selectAction = int(selectAction)
-                        if selectAction == 0:
+                    selectedAction = input()
+                    if ValidInput.forMenu(selectedAction, str.isdecimal, 2):
+                        selectedAction = int(selectedAction)
+                        if selectedAction == 0:
                             break
-                        elif selectAction == 1:
+                        elif selectedAction == 1:
                             print("\n\nEnter opposing defence roll (no-decimal number, 0-99):\n")
                             opposeRoll = ValidInput.forInt()
-                            session.actionInterfaceNPCs[select - 1].Attack(opposeRoll)  #Stat manipulation made in-class.
-                        elif selectAction == 2:
+                            session.actionInterfaceNPCs[select - 1].Attack(opposeRoll)  # Stat manipulation made in-class.
+                        elif selectedAction == 2:
                             print("\n\nEnter attack roll (0-99):\n")
                             opposeRoll = ValidInput.forInt()
                             print("\n\nEnter damage roll (no-decimal number): :\n")

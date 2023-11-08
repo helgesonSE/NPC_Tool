@@ -1,5 +1,7 @@
 import ClearScreen
 import time
+
+import Data
 import ValidInput
 from Models.NPCs import *
 from Data import session
@@ -40,7 +42,7 @@ def addNPC():
 
     print(f"NPC {npcInstance.name} with ID {npcInstance.id} added.")
     time.sleep(3)
-
+    Data.session.writeNPCsToFile()
 
 def editNPCs():
     session.NPCList.sort(key=lambda x: x.id)  # Sorts the list based on the id value.
@@ -98,9 +100,9 @@ def editNPCs():
                 time.sleep(3)
                 continue
         break
+    Data.session.writeNPCsToFile()
 
-
-def enterValueForNPC(key):  #Different dialogue and input checks based on what attribute is being changed.
+def enterValueForNPC(key):  # Different dialogue and input checks based on what attribute is being changed.
     if key == Attribute.Name or key == Attribute.Description:
         print(f"Enter NPC {key.name}:")
         returnValue = input()

@@ -1,0 +1,65 @@
+{
+   "staticId": "0013",
+   "BaseNPC": [
+      {
+         "id": "0004",
+         "name": "Bear",
+         "hitPoints": 50,
+         "guardPoints": 30,
+         "attackSkill": 70,
+         "defenceSkill": 45,
+         "armour": 2,
+         "description": "It’s pretty cute. Too bad it’s gonna eat you."
+      },
+      {
+         "id": "0009",
+         "name": "Storsnodden",
+         "hitPoints": 40,
+         "guardPoints": 30,
+         "attackSkill": 65,
+         "defenceSkill": 40,
+         "armour": 4,
+         "description": "Long and scaly with fearsome teeth."
+      },
+      {
+         "id": "0011",
+         "name": "Erik the Red",
+         "hitPoints": 33,
+         "guardPoints": 22,
+         "attackSkill": 76,
+         "defenceSkill": 55,
+         "armour": 3,
+         "description": "Viking lookin 'dude"
+      }
+   ],
+   "ArmedNPC": [
+      {
+         "id": "0010",
+         "name": "Wolfkin Scout",
+         "hitPoints": 28,
+         "guardPoints": 25,
+         "attackSkill": 75,
+         "defenceSkill": 40,
+         "armour": 2,
+         "description": "Here comes the Game Dog, AROOOOO!",
+         "weapon": {
+            "name": "Scimitar",
+            "damage": 5
+         }
+      },
+      {
+         "id": "0012",
+         "name": "Jocke med Kniven",
+         "hitPoints": 21,
+         "guardPoints": 24,
+         "attackSkill": 77,
+         "defenceSkill": 66,
+         "armour": 2,
+         "description": "Han är tysk",
+         "weapon": {
+            "name": "Den Stora",
+            "damage": 4
+         }
+      }
+   ]
+}
